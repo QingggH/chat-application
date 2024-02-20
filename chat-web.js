@@ -8,7 +8,7 @@ const chatWeb = {
           <link rel="stylesheet" href="/chat.css">
         </head>
         <body>
-          <div id="chat-app">
+          <div id="chat-app" class="chat-app">
             ${chatWeb.getUserList(chat)}
             ${chatWeb.getMessageList(chat)}
             ${chatWeb.getOutgoingSection(chat)}
@@ -16,31 +16,6 @@ const chatWeb = {
         </body>
       </html>
   `;
-  },
-
-  getMessageList: function (chat) {
-    return (
-      `<ol class="messages">` +
-      /////////
-      chat.messages
-        .map(
-          (message) => `
-        <li>
-          <div class="message">
-            <div class="message-avatar">
-                <img src="${message.avatar}" alt="${message.sender}'s avatar">
-            </div>
-            <div class="message-container">
-              ${message.text}
-            </div>
-          </div>
-        </li>
-      `
-        )
-        .join("") +
-      `</ol>` +
-      `</div>`
-    );
   },
   getUserList: function (chat) {
     return (
@@ -60,9 +35,34 @@ const chatWeb = {
     `
         )
         .join("") +
-      `</ul>`
+      `</ul>` +
+      `</div>`
     );
   },
+
+  getMessageList: function (chat) {
+    return (
+      `<ol class="messages">` +
+      chat.messages
+        .map(
+          (message) => `
+        <li>
+          <div class="message">
+            <div class="message-avatar">
+                <img src="${message.avatar}" alt="${message.sender}'s avatar">
+            </div>
+            <div class="message-container">
+              ${message.text}
+            </div>
+          </div>
+        </li>
+      `
+        )
+        .join("") +
+      `</ol>`
+    );
+  },
+
   getOutgoingSection: function () {
     return `
     <div class = "text-field">
