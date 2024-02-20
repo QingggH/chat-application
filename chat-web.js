@@ -42,7 +42,7 @@ const chatWeb = {
 
   getMessageList: function (chat) {
     return (
-      `<ol class="messages">` +
+      `<ol class="messages" id="message-box">` +
       chat.messages
         .map(
           (message) => `
@@ -59,7 +59,11 @@ const chatWeb = {
       `
         )
         .join("") +
-      `</ol>`
+      `</ol>` +
+      `<script>
+      const messageBox = document.getElementById('message-box');
+messageBox.scrollTop = messageBox.scrollHeight;
+      </script>`
     );
   },
 
